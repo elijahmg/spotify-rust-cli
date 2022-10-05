@@ -1,0 +1,4 @@
+/target
+.env
+.idea
+.spotify_token_cache.json

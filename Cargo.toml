@@ -1,0 +1,19 @@
+[package]
+name = "spotify-rust-cli"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.0.9", features = ["derive", "cargo"] }
+rspotify = { version = "0.11.5", features = ["env-file", "cli"] }
+env_logger = "0.9.1"
+tokio = { version = "1.21.2", features = ["full"] }
+anyhow = "1.0.65"
+home = "0.5.3"
+
+[[bin]]
+bench = false
+path = "src/main.rs"
+name = "spf"
