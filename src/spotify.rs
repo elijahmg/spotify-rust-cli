@@ -1,5 +1,4 @@
 use crate::oauth;
-use anyhow::{anyhow, Result};
 
 use rspotify::{
   prelude::*, AuthCodeSpotify, Config, Credentials, DEFAULT_CACHE_PATH,
@@ -29,20 +28,6 @@ pub async fn get_spotify() -> AuthCodeSpotify {
   spotify.prompt_for_token(&url).await.unwrap();
 
   spotify
-}
-
-// @TODO must be improved, store device id in yaml or json
-// @TODO if there is more than one device, ask to choose
-pub async fn get_device(spotify: &AuthCodeSpotify) -> Result<String> {
-  let devices = spotify.device().await;
-
-  if let Ok(devs) = devices {
-    let first_device = &devs[0];
-
-    Ok(first_device.id.as_ref().unwrap().clone())
-  } else {
-    Err(anyhow!("Failed to get device id"))
-  }
 }
 
 pub fn get_cache_dir() -> PathBuf {

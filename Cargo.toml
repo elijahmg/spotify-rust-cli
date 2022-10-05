@@ -9,6 +9,8 @@ edition = "2021"
 clap = { version = "4.0.9", features = ["derive", "cargo"] }
 rspotify = { version = "0.11.5", features = ["env-file", "cli"] }
 env_logger = "0.9.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9.13"
 tokio = { version = "1.21.2", features = ["full"] }
 anyhow = "1.0.65"
 home = "0.5.3"
