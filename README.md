@@ -33,9 +33,12 @@ Then put spf bin into desired folder and set it as executable.
 For zsh it's like `export PATH="$HOME/.spf/bin:$PATH"` into `~/.zshrc`
 After in new terminal session
 
-
-Run in terminal `spf pb -r/-p`.
-Currently, this supports only pause and resume playback
-
+## Implemented commands
+- Playback pause `spf playback --pause` or `spf pb -p`
+- Resume pause `spf playback --resume` or `spf pb -r`
+- Next track `spf track --next` or `spf tr -n`
+- Next track `spf track --prev` or `spf tr -p`
+- Like track `spf track --like` or `spf tr -l`
+- Unlike track `spf track --unlike` or `spf tr -u`
 
 ## More is coming 🚅

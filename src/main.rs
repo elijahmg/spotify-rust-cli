@@ -7,6 +7,7 @@ mod spotify;
 use crate::spotify::get_spotify;
 
 use crate::device::DeviceConfig;
+use crate::handlers::{playback, track};
 use clap::Command;
 
 // TODO: set client device into file
@@ -20,6 +21,7 @@ async fn main() {
     .author(env!("CARGO_PKG_AUTHORS"))
     .about(env!("CARGO_PKG_DESCRIPTION"))
     .subcommand(args::playback_subcommand())
+    .subcommand(args::track_subcommand())
     .get_matches();
 
   let spotify = get_spotify().await;
@@ -39,11 +41,28 @@ async fn main() {
     match cmd {
       "playback" => {
         if sub_matches.get_flag("resume") {
-          handlers::resume_playback(&spotify, device_id).await;
+          playback::resume_playback(&spotify, device_id).await;
         }
 
         if sub_matches.get_flag("pause") {
-          handlers::pause_playback(&spotify, device_id).await;
+          playback::pause_playback(&spotify, device_id).await;
+        }
+      }
+      "track" => {
+        if sub_matches.get_flag("next") {
+          track::next_track(&spotify, device_id).await;
+        }
+
+        if sub_matches.get_flag("prev") {
+          track::prev_track(&spotify, device_id).await;
+        }
+
+        if sub_matches.get_flag("like") {
+          track::like_track(&spotify).await;
+        }
+
+        if sub_matches.get_flag("unlike") {
+          track::unlike_track(&spotify).await;
         }
       }
       _ => unimplemented!(),
